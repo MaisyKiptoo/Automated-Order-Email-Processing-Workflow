@@ -1,0 +1,457 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ed5b7d13-c440-42cb-92eb-7bdbbe76990f",
+      "name": "Email Trigger (IMAP)",
+      "credentials": {
+        "imap": {
+          "id": "qZG7urkRle1Kr5cl",
+          "name": "IMAP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2f411f5a-0577-4cea-b1c2-ca6b42a39fda",
+              "leftValue": "={{$json.textPlain}}",
+              "rightValue": "Tobacco",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "f0b5c29d-2c43-4841-ba37-66084e7f4515",
+              "leftValue": "={{$json.from}}",
+              "rightValue": "shop-attendant@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        288
+      ],
+      "id": "433988ab-d296-4111-a16c-a2b0df1fcdd6",
+      "name": "If-Tobacco"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4a375c58-e01e-41b1-87b3-9c85186473a9",
+              "leftValue": "={{$json.textPlain}}",
+              "rightValue": "Toiletries",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "3c8c27f0-43f9-4801-a7cf-0d4478c54785",
+              "leftValue": "={{$json.from}}",
+              "rightValue": "shop-attendant@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        128
+      ],
+      "id": "dbdd58aa-4b42-476c-bbee-cbf03021b0db",
+      "name": "If-Toiletries"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "495828c2-3e94-4616-945c-0623dc6f012c",
+              "leftValue": "={{$json.textPlain}}",
+              "rightValue": "Beverages",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "b7d350ec-0f04-4cde-9220-cd4b89fa74c6",
+              "leftValue": "={{$json.from}}",
+              "rightValue": "shop-attendant@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        -144
+      ],
+      "id": "60d5a404-c014-4653-9b79-61c91ec380d6",
+      "name": "If-Beverages"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "e302427e-3381-4a13-9674-446e2a0fc551",
+              "leftValue": "={{$json.textPlain}} ",
+              "rightValue": "Snacks",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "97589b1c-2076-4255-bac6-911af56c1fff",
+              "leftValue": "={{$json.from}}",
+              "rightValue": "shop-attendant@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "cb760e1c-18a6-4074-accc-0dd5a51f88b7",
+      "name": "If-Snacks"
+    },
+    {
+      "parameters": {
+        "fromEmail": "procurement.coordinator@gmail.com",
+        "toEmail": "supplier@gmail.com",
+        "subject": "New Toiletries Order",
+        "emailFormat": "text",
+        "text": "= {{$json.textPlain}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        80
+      ],
+      "id": "00b954e8-cc3b-4548-9299-50e035d85114",
+      "name": "Send an Email",
+      "webhookId": "6593028a-d886-434a-8282-37297fa10faa",
+      "credentials": {
+        "smtp": {
+          "id": "n22kHUZa1r6JrG0i",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "procurement.coordinator@gmail.com",
+        "toEmail": "supplier@gmail.com",
+        "subject": "New Tobacco Order",
+        "emailFormat": "text",
+        "text": "={{$json.textPlain}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        432,
+        224
+      ],
+      "id": "499754e9-dae2-4fe9-aaad-0759715f9b01",
+      "name": "Send an Email1",
+      "webhookId": "2fd32e3f-f8bb-4201-a8b8-8feb4a8c1c28",
+      "credentials": {
+        "smtp": {
+          "id": "n22kHUZa1r6JrG0i",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "procurement.coordinator@gmail.com",
+        "toEmail": "supplier@gmail.com",
+        "subject": "New Snacks Order",
+        "emailFormat": "text",
+        "text": "={{ $json.textPlain }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        -96
+      ],
+      "id": "49c9701d-7b82-4ba6-99ca-1055f5293a76",
+      "name": "Send an Email2",
+      "webhookId": "f8227ef1-6947-43e0-89a8-30b7bc8960de",
+      "credentials": {
+        "smtp": {
+          "id": "n22kHUZa1r6JrG0i",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "procurement.coordinator@gmail.com",
+        "toEmail": "supplier@gmail.com",
+        "subject": "New Beverages Order",
+        "emailFormat": "text",
+        "text": "={{ $json.textPlain }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        464,
+        -240
+      ],
+      "id": "26f79f85-8411-4c25-be2a-9ae92395fdc6",
+      "name": "Send an Email3",
+      "webhookId": "e08c0f6b-3340-4e78-aed2-148da9251822",
+      "credentials": {
+        "smtp": {
+          "id": "n22kHUZa1r6JrG0i",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "procurement.coordinator@gmail.com",
+        "toEmail": "procurement.coordinator@gmail.com",
+        "subject": "Supplier Reply Received.",
+        "emailFormat": "text",
+        "text": "=A supplier replied: {{$json.subject}} — {{$json.textPlain}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        -432
+      ],
+      "id": "d76d9427-e57f-419f-aaf4-44462bab33b8",
+      "name": "Send an Email4",
+      "webhookId": "b9774a05-692e-422e-b998-685efdec3bc6",
+      "credentials": {
+        "smtp": {
+          "id": "n22kHUZa1r6JrG0i",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b38ac967-ceb5-4ac1-81d7-fffd4dda0ee1",
+              "leftValue": "={{$json.from}}",
+              "rightValue": "supplier@gmail.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        144,
+        -336
+      ],
+      "id": "e673f0cd-627a-477e-97d0-a14047ae8c1b",
+      "name": "If- Supplier reply"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Email Trigger (IMAP)": {
+      "main": [
+        [
+          {
+            "node": "If-Snacks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If-Beverages",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If-Toiletries",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If-Tobacco",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If- Supplier reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-Toiletries": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-Tobacco": {
+      "main": [
+        [
+          {
+            "node": "Send an Email1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-Snacks": {
+      "main": [
+        [
+          {
+            "node": "Send an Email2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-Beverages": {
+      "main": [
+        [
+          {
+            "node": "Send an Email3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send an Email3": {
+      "main": [
+        []
+      ]
+    },
+    "If- Supplier reply": {
+      "main": [
+        [
+          {
+            "node": "Send an Email4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "9568e3a2-9503-47ea-a5ef-4ab062f60a24",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d34dd12a0490352c9f09ebb59e0cea47edc60b2f37096b67b423756066a737d5"
+  },
+  "nodeGroups": [],
+  "id": "VOmqGk7cuLvT1csJ",
+  "tags": []
+}
