@@ -1,4 +1,4 @@
-# Petrol Station Inventory & Supplier Order Automation
+# Petrol Station Restock Order Automation
 
 An end-to-end **business process automation system** built with n8n to streamline restocking requests for petrol-station convenience shops.
 
